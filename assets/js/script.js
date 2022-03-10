@@ -69,20 +69,17 @@ var passSpecial = function() {
 };
 passSpecial();
 
-// var passLength = function() {
-//   var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
-//   passLengthVerify = parseInt(passLengthVerify);
-//   switch (passLengthVerify) {
-//     case passLengthVerify >= 8 && passLengthVerify <= 128:
-//     passLength = passLengthVerify;
-//     break;
-//     default:
-//     window.alert('You did not pick a valid option (8 to 128). Try again.');
-//     passLength();
-//     break;
-//   }
-// };
-// passLength();
+var passLength = function() {
+  var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
+  passLengthVerify = parseInt(passLengthVerify);
+  if (passLengthVerify >= 8 && passLengthVerify <= 128) {
+    passLength = passLengthVerify;
+  } else {
+    window.alert('You did not pick a valid option (8 to 128). Try again.');
+    passLength();
+  }
+};
+passLength();
 
 
 
