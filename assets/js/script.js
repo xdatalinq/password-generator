@@ -1,12 +1,93 @@
 // Assignment code here
-var passLength = window.prompt("Choose a password length, 8 to 128 characters");
-var passLowerCase = window.prompt("Would you like to include lower case characters? y/n");
-var passUpperCase = window.prompt("Would you like to include upper case characters? y/n");
-var passNumbers = window.prompt("Would you like to include numerical characters? y/n");
-var passSpecial = window.prompt("Would you like to include special characters? y/n");
 
 
-// Get references to the #generate element
+var passLowerCase = function() {
+  var passLowerVerify = window.prompt("Would you like to include lower case characters? y/n");
+    switch (passLowerVerify) {
+      case 'y':
+      passLowerCase = true;
+      break;
+      case 'n':
+      passLowerCase = false;
+      break;
+      default:
+      window.alert('You did not pick a valid option (y/n). Try again.');
+      passLowerCase();
+      break;
+    }
+  };
+passLowerCase();
+
+var passUpperCase = function() {
+  var passUpperVerify = window.prompt("Would you like to include upper case characters? y/n");
+    switch (passUpperVerify) {
+      case 'y':
+      passUpperCase = true;
+      break;
+      case 'n':
+      passUpperCase = false;
+      break;
+      default:
+      window.alert('You did not pick a valid option (y/n). Try again.');
+      passUpperCase();
+      break;
+    }
+  };
+passUpperCase();
+
+var passNumbers = function() {
+  var passNumbersVerify = window.prompt("Would you like to include numerical characters? y/n");
+  switch (passNumbersVerify) {
+    case 'y':
+    passNumbers = true;
+    break;
+    case 'n':
+    passNumbers = false;
+    break;
+    default:
+    window.alert('You did not pick a valid option (y/n). Try again.');
+    passNumbers();
+    break;
+  }
+};
+passNumbers();
+
+var passSpecial = function() {
+  var passSpecialVerify = window.prompt("Would you like to include special characters? y/n");
+  switch (passSpecialVerify) {
+    case 'y':
+    passSpecial = true;
+    break;
+    case 'n':
+    passSpecial = false;
+    break;
+    default:
+    window.alert('You did not pick a valid option (y/n). Try again.');
+    passSpecial();
+    break;
+  }
+};
+passSpecial();
+
+// var passLength = function() {
+//   var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
+//   passLengthVerify = parseInt(passLengthVerify);
+//   switch (passLengthVerify) {
+//     case passLengthVerify >= 8 && passLengthVerify <= 128:
+//     passLength = passLengthVerify;
+//     break;
+//     default:
+//     window.alert('You did not pick a valid option (8 to 128). Try again.');
+//     passLength();
+//     break;
+//   }
+// };
+// passLength();
+
+
+
+
+ // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
@@ -37,4 +118,4 @@ WHEN all prompts are answered
 THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
-*/
+*/ 
