@@ -1,4 +1,4 @@
-JavaScript-based password generator. 
+JavaScript prompt-based password generator. 
 
 Repo: https://github.com/xdatalinq/password-generator
 Live: Coming soon!
