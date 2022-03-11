@@ -1,11 +1,10 @@
 // Assignment code here
-
-
 var passLowerCase = function() {
   var passLowerVerify = window.prompt("Would you like to include lower case characters? y/n");
     switch (passLowerVerify) {
       case 'y':
       passLowerCase = true;
+      //add function to pick random lower case letter, add this to "selection" array
       break;
       case 'n':
       passLowerCase = false;
@@ -23,6 +22,7 @@ var passUpperCase = function() {
     switch (passUpperVerify) {
       case 'y':
       passUpperCase = true;
+      //add function to pick random upper case letter, add this to "selection" array
       break;
       case 'n':
       passUpperCase = false;
@@ -40,6 +40,7 @@ var passNumbers = function() {
   switch (passNumbersVerify) {
     case 'y':
     passNumbers = true;
+    //add function to pick random number, add this to "selection" array
     break;
     case 'n':
     passNumbers = false;
@@ -57,6 +58,7 @@ var passSpecial = function() {
   switch (passSpecialVerify) {
     case 'y':
     passSpecial = true;
+    //add function to pick random special character, add this to "selection" array
     break;
     case 'n':
     passSpecial = false;
@@ -81,7 +83,10 @@ var passLength = function() {
 };
 passLength();
 
-
+// Add a function to fill the rest of the array, if we have a full selection (4 characters picked) and selected length is 8, we need to backfill 4 more ccaracters into the array "selection"
+// Check pass length, deduct current length of "selection" array
+// Use a for loop to try and bridge with approach from screenshot somehow
+// Look into window.confirm in case criteria requires it
 
 
  // Get references to the #generate element
@@ -98,6 +103,14 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+
+
+
+
+
 
 /*
 GIVEN I need a new, secure password
