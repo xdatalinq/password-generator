@@ -1,21 +1,48 @@
 // Assignment code here
 
 var selection = [];
+var master = [];
+var passwordLength;
+var trackingNo = 0;
 
-var passLowerCase = function() {
+function addLowerCase() {
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz".split('');
+  var randomLetter = lowerCase[Math.floor(Math.random() * lowerCase.length)];
+  selection.push(randomLetter);
+  master = master.concat(lowerCase);
+};
+
+function addUpperCase() {
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+  var randomLetter = upperCase[Math.floor(Math.random() * upperCase.length)];
+  selection.push(randomLetter);
+  master = master.concat(upperCase);
+};
+
+function addNumber() {
+  const numberCase = "0123456789".split('');
+  var randomNumber = numberCase[Math.floor(Math.random() * numberCase.length)];
+  selection.push(randomNumber);
+  master = master.concat(numberCase);
+};
+
+function addSpecial() {
+  const specialCase = "!#$%&()*+,-./:;<=>?@[\]^_`{|}~".split('');
+  var randomSpecial = specialCase[Math.floor(Math.random() * specialCase.length)];
+  selection.push(randomSpecial);
+  master = master.concat(specialCase);
+};
+
+function passLowerCase() {
   var passLowerVerify = window.prompt("Would you like to include lower case characters? y/n");
     switch (passLowerVerify) {
       case 'y':
-      passLowerCase = true;
-      //add function to pick random lower case letter, add this to "selection" array
-      function() {
-        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
-        var selection = [Math.floor(Math.random() * lowerCase.length)];
-        return selection;
-      }; 
+      addLowerCase();
+      passUpperCase();
       break;
       case 'n':
-      passLowerCase = false;
+      // increment trackingNo +1
+      passUpperCase();
       break;
       default:
       window.alert('You did not pick a valid option (y/n). Try again.');
@@ -23,22 +50,17 @@ var passLowerCase = function() {
       break;
     }
   };
-passLowerCase();
 
-var passUpperCase = function() {
+function passUpperCase() {
   var passUpperVerify = window.prompt("Would you like to include upper case characters? y/n");
     switch (passUpperVerify) {
       case 'y':
-      passUpperCase = true;
-      //add function to pick random upper case letter, add this to "selection" array
-      function() {
-        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var selection = selection + [Math.floor(Math.random() * upperCase.length)];
-        return selection;
-      };
+      addUpperCase();
+      passNumbers();
       break;
       case 'n':
-      passUpperCase = false;
+      // increment trackingNo +1
+      passNumbers();
       break;
       default:
       window.alert('You did not pick a valid option (y/n). Try again.');
@@ -46,22 +68,18 @@ var passUpperCase = function() {
       break;
     }
   };
-passUpperCase();
 
-var passNumbers = function() {
+
+function passNumbers() {
   var passNumbersVerify = window.prompt("Would you like to include numerical characters? y/n");
   switch (passNumbersVerify) {
     case 'y':
-    passNumbers = true;
-    //add function to pick random number, add this to "selection" array
-    function() {
-      const numbers = "0123456789";
-      var selection = selection + [Math.floor(Math.random() * numbers.length)];
-      return selection;
-    };
+    addNumber();
+    passSpecial();
     break;
     case 'n':
-    passNumbers = false;
+    // increment trackingNo +1
+    passSpecial();
     break;
     default:
     window.alert('You did not pick a valid option (y/n). Try again.');
@@ -69,21 +87,18 @@ var passNumbers = function() {
     break;
   }
 };
-passNumbers();
 
-var passSpecial = function() {
+
+function passSpecial() {
   var passSpecialVerify = window.prompt("Would you like to include special characters? y/n");
   switch (passSpecialVerify) {
     case 'y':
-    passSpecial = true;
-    //add function to pick random special character, add this to "selection" array
-    function() {
-      const special = "!#$%&()*+,-./:;<=>?@[\]^_`{|}~";
-      var selection = selection + [Math.floor(Math.random() * special.length)];
-      return selection;
-    };
+    addSpecial();
+    passLength();
+    break;
     case 'n':
-    passSpecial = false;
+    // increment trackingNo +1
+    passLength();
     break;
     default:
     window.alert('You did not pick a valid option (y/n). Try again.');
@@ -91,25 +106,36 @@ var passSpecial = function() {
     break;
   }
 };
-passSpecial();
 
-var passLength = function() {
+function passLength() {
+  if (trackingNo === 4) {
+    window.alert('You need to select at least one character type to continue');
+    passLowerCase();
+  } 
   var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
   passLengthVerify = parseInt(passLengthVerify);
   if (passLengthVerify >= 8 && passLengthVerify <= 128) {
-    passLength = passLengthVerify;
+    passwordLength = passLengthVerify;
+    backFill();
   } else {
     window.alert('You did not pick a valid option (8 to 128). Try again.');
     passLength();
-  }
+  } 
 };
-passLength();
 
-// Add a function to fill the rest of the array, if we have a full selection (4 characters picked)
-// and selected length is 8, we need to backfill 4 more characters into the array "selection"
-// Check pass length, deduct current length of "selection" array
-// Use a for loop to try and bridge with approach from screenshot some how
-// Look into window.confirm in case criteria requires it
+function backFill() {
+  var num = passwordLength - selection.length; 
+  for (var i=0; i < num; i++) {
+    selection.push(master[Math.floor(Math.random() * master.length)]) 
+  }
+  console.log(selection);
+};
+
+
+
+// NEXT STEP, send selection to DOM element (text area field)
+
+
 
 
  // Get references to the #generate element
@@ -117,7 +143,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = selection; // Need to make everything in selection into 1 big string
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -125,7 +151,7 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", passLowerCase);
 
 
 
