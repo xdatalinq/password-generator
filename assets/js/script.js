@@ -1,10 +1,18 @@
 // Assignment code here
+
+var selection = [];
+
 var passLowerCase = function() {
   var passLowerVerify = window.prompt("Would you like to include lower case characters? y/n");
     switch (passLowerVerify) {
       case 'y':
       passLowerCase = true;
       //add function to pick random lower case letter, add this to "selection" array
+      function() {
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        var selection = [Math.floor(Math.random() * lowerCase.length)];
+        return selection;
+      }; 
       break;
       case 'n':
       passLowerCase = false;
@@ -23,6 +31,11 @@ var passUpperCase = function() {
       case 'y':
       passUpperCase = true;
       //add function to pick random upper case letter, add this to "selection" array
+      function() {
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var selection = selection + [Math.floor(Math.random() * upperCase.length)];
+        return selection;
+      };
       break;
       case 'n':
       passUpperCase = false;
@@ -41,6 +54,11 @@ var passNumbers = function() {
     case 'y':
     passNumbers = true;
     //add function to pick random number, add this to "selection" array
+    function() {
+      const numbers = "0123456789";
+      var selection = selection + [Math.floor(Math.random() * numbers.length)];
+      return selection;
+    };
     break;
     case 'n':
     passNumbers = false;
@@ -59,7 +77,11 @@ var passSpecial = function() {
     case 'y':
     passSpecial = true;
     //add function to pick random special character, add this to "selection" array
-    break;
+    function() {
+      const special = "!#$%&()*+,-./:;<=>?@[\]^_`{|}~";
+      var selection = selection + [Math.floor(Math.random() * special.length)];
+      return selection;
+    };
     case 'n':
     passSpecial = false;
     break;
@@ -83,9 +105,10 @@ var passLength = function() {
 };
 passLength();
 
-// Add a function to fill the rest of the array, if we have a full selection (4 characters picked) and selected length is 8, we need to backfill 4 more ccaracters into the array "selection"
+// Add a function to fill the rest of the array, if we have a full selection (4 characters picked)
+// and selected length is 8, we need to backfill 4 more characters into the array "selection"
 // Check pass length, deduct current length of "selection" array
-// Use a for loop to try and bridge with approach from screenshot somehow
+// Use a for loop to try and bridge with approach from screenshot some how
 // Look into window.confirm in case criteria requires it
 
 
