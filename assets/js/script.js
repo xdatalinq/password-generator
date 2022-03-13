@@ -4,6 +4,12 @@ var selection = [];
 var master = [];
 var passwordLength;
 var trackingNo = 0;
+var generateBtn = document.querySelector("#generate");
+
+var generatePassword = function (){
+  passLowerCase();
+  return password;
+};
 
 function addLowerCase() {
   const lowerCase = "abcdefghijklmnopqrstuvwxyz".split('');
@@ -88,7 +94,6 @@ function passNumbers() {
   }
 };
 
-
 function passSpecial() {
   var passSpecialVerify = window.prompt("Would you like to include special characters? y/n");
   switch (passSpecialVerify) {
@@ -129,25 +134,22 @@ function backFill() {
   var num = passwordLength - selection.length; 
   for (var i=0; i < num; i++) {
     selection.push(master[Math.floor(Math.random() * master.length)]) 
-  }
-  console.log(selection);
+  } stringConverter();
 };
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+function stringConverter() {
+  password = selection.join("");
+};
 
 // Write password to the #password input
 function writePassword() {
-  var password = selection; // Need to make everything in selection into 1 big string
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", passLowerCase);
-
+generateBtn.addEventListener("click", writePassword);
 
 
 
