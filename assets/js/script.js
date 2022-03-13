@@ -140,8 +140,10 @@ function passLength() {
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  selection = [];
+  master = [];
   var passwordText = document.querySelector("#password");
+  var password = generatePassword();
   passwordText.value = password;
 };
 
