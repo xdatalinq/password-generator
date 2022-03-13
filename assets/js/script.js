@@ -1,5 +1,3 @@
-// Assignment code here
-
 var selection = [];
 var master = [];
 var passwordLength;
@@ -9,6 +7,17 @@ var generateBtn = document.querySelector("#generate");
 var generatePassword = function (){
   passLowerCase();
   return password;
+};
+
+function stringConverter() {
+  password = selection.join("");
+};
+
+function backFill() {
+  var num = passwordLength - selection.length; 
+  for (var i=0; i < num; i++) {
+    selection.push(master[Math.floor(Math.random() * master.length)]) 
+  } stringConverter();
 };
 
 function addLowerCase() {
@@ -75,7 +84,6 @@ function passUpperCase() {
     }
   };
 
-
 function passNumbers() {
   var passNumbersVerify = window.prompt("Would you like to include numerical characters? y/n");
   switch (passNumbersVerify) {
@@ -130,48 +138,12 @@ function passLength() {
   } 
 };
 
-function backFill() {
-  var num = passwordLength - selection.length; 
-  for (var i=0; i < num; i++) {
-    selection.push(master[Math.floor(Math.random() * master.length)]) 
-  } stringConverter();
-};
-
-function stringConverter() {
-  password = selection.join("");
-};
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
-
-
-
-
-/*
-GIVEN I need a new, secure password
-WHEN I click the button to generate a password
-THEN I am presented with a series of prompts for password criteria
-WHEN prompted for password criteria
-THEN I select which criteria to include in the password
-WHEN prompted for the length of the password
-THEN I choose a length of at least 8 characters and no more than 128 characters
-WHEN asked for character types to include in the password
-THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
-WHEN I answer each prompt
-THEN my input should be validated and at least one character type should be selected
-WHEN all prompts are answered
-THEN a password is generated that matches the selected criteria
-WHEN the password is generated
-THEN the password is either displayed in an alert or written to the page
-*/ 
