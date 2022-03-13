@@ -41,7 +41,7 @@ function passLowerCase() {
       passUpperCase();
       break;
       case 'n':
-      // increment trackingNo +1
+      trackingNo = trackingNo + 1;
       passUpperCase();
       break;
       default:
@@ -59,7 +59,7 @@ function passUpperCase() {
       passNumbers();
       break;
       case 'n':
-      // increment trackingNo +1
+      trackingNo = trackingNo + 1;
       passNumbers();
       break;
       default:
@@ -78,7 +78,7 @@ function passNumbers() {
     passSpecial();
     break;
     case 'n':
-    // increment trackingNo +1
+    trackingNo = trackingNo + 1;
     passSpecial();
     break;
     default:
@@ -97,7 +97,7 @@ function passSpecial() {
     passLength();
     break;
     case 'n':
-    // increment trackingNo +1
+    trackingNo = trackingNo + 1;
     passLength();
     break;
     default:
@@ -110,16 +110,18 @@ function passSpecial() {
 function passLength() {
   if (trackingNo === 4) {
     window.alert('You need to select at least one character type to continue');
+    trackingNo = 0;
     passLowerCase();
-  } 
-  var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
-  passLengthVerify = parseInt(passLengthVerify);
-  if (passLengthVerify >= 8 && passLengthVerify <= 128) {
-    passwordLength = passLengthVerify;
-    backFill();
   } else {
-    window.alert('You did not pick a valid option (8 to 128). Try again.');
-    passLength();
+    var passLengthVerify = window.prompt("Choose a password length, 8 to 128 characters");
+    passLengthVerify = parseInt(passLengthVerify);
+    if (passLengthVerify >= 8 && passLengthVerify <= 128) {
+      passwordLength = passLengthVerify;
+      backFill();
+    } else {
+      window.alert('You did not pick a valid option (8 to 128). Try again.');
+      passLength();
+    }
   } 
 };
 
@@ -131,14 +133,7 @@ function backFill() {
   console.log(selection);
 };
 
-
-
-// NEXT STEP, send selection to DOM element (text area field)
-
-
-
-
- // Get references to the #generate element
+// Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
