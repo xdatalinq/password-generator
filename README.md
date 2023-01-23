@@ -14,7 +14,7 @@
   * Javascript
   
   ## Screenshot
-  Screenshot: ![image (1)](https://user-images.githubusercontent.com/89672040/156391210-7e4e9551-2713-411f-884d-3be734fb2085.png)
+  Screenshot: ![image](https://user-images.githubusercontent.com/89672040/214111156-dd5d2969-a3aa-49bf-ac98-f39a414b47c9.png)
  
   ## Live
   Live: https://xdatalinq.github.io/password-generator/
